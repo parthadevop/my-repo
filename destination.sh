@@ -10,4 +10,4 @@ echo "Number of characters: $(wc -c < $filepath)"
 else
 echo "File not found."
 fi:
-
+echo " hello "
