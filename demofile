@@ -1,1 +1,10 @@
+<<<<<<< Updated upstream
 code for demofile
+=======
+
+code writtem for demofile 
+pervious was in stash
+this is for clinet
+echo " demo file "
+
+>>>>>>> Stashed changes
