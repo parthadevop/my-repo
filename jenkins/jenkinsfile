@@ -1,29 +1,17 @@
-pipeline {
-agent any
-stages {
-stage('Input') {
-steps {
-// Get the user input
-def userInput = input(
-id: 'userInput',
-message: 'Enter a valid email address:',
-parameters: [
-string(
-defaultValue: '',
-description: 'Email address',
-name: 'email'
-)
-]
-)
-// Save the input to a variable
-email = userInput.email
-// Validate the input using a regular expression
-if (email =~ '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+\$') {
-echo "Valid email: ${email}"
-} else {
-error "Invalid email: ${email}"
-}
-}
-}
+pipeline{
+    agent any
+    
+    stages{
+        stage('build'){
+            steps{
+                sh 'echo Build is successful'
+            }
+        }
+        stage('test'){
+            steps{
+                sh 'echo test is successfull'
+            }
+        }
 }
 
+}
