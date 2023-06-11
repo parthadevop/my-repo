@@ -1,14 +1,6 @@
+ 
 pipeline {
-<<<<<<< HEAD
-    agent{
-        dockerfile {
-            filename 'Dockerfile'
-            label 'slave_node'
-        }
-    }
-=======
     agent { node { label 'slave_node' } }
->>>>>>> c3691c4 (Write a piepline script to add 'Docker' as a node/slave.3)
     stages {
         stage('Test') {
             agent {
