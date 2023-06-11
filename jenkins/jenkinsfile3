@@ -1,0 +1,21 @@
+pipeline {
+    agent none
+    stages {
+        stage('Add Docker node') {
+            agent {
+                docker {
+                    image 'docker'
+                    label 'docker'
+                }
+            }
+            steps {
+                node ('docker-build-slave') {
+                stage ('On slave') {
+                    sh 'ls -l'
+                    sh 'uname -a'
+                }
+            }
+            }
+        }
+    }
+}
