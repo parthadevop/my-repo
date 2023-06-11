@@ -19,9 +19,9 @@ name: 'email'
 email = userInput.email
 // Validate the input using a regular expression
 if (email =~ '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+\$') {
-echo "Valid email: $ {email}"
+echo "Valid email: ${email}"
 } else {
-error "Invalid email: $ {email}"
+error "Invalid email: ${email}"
 }
 }
 }
