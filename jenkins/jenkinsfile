@@ -12,6 +12,12 @@ pipeline{
                 sh 'echo test is successfull'
             }
         }
+        stage('deploy'){
+            steps{
+                sh 'echo deploy is successfull'
+            }
+        }
+
 }
 
 }
