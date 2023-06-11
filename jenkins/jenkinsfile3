@@ -1,5 +1,5 @@
 pipeline {
-    agent any{
+    agent docker{
         dockerfile {
             filename 'Dockerfile'
             label 'slave_node'
