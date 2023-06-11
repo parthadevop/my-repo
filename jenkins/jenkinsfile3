@@ -1,19 +1,24 @@
 pipeline {
+<<<<<<< HEAD
     agent{
         dockerfile {
             filename 'Dockerfile'
             label 'slave_node'
         }
     }
+=======
+    agent { node { label 'slave_node' } }
+>>>>>>> c3691c4 (Write a piepline script to add 'Docker' as a node/slave.3)
     stages {
-        stage ("example stage") {
+        stage('Test') {
+            agent {
+                dockerfile true
+            }
             steps {
-                script {
-                    sh 'cat /etc/os-release'
-                    sh 'curl --version'
-                    sh 'echo Successfully compiled'
-                }
+                sh 'cat /etc/os-release'
+                sh 'curl --version'
+                sh 'echo Successfully compiled'
             }
         }
     }
-}
+} 
