@@ -1,17 +1,29 @@
 pipeline {
-agent none // no global agent
+agent any
 stages {
-stage('Stage 1') {
-node('master') { // run on master
-echo "Running on $ {env.NODE_NAME}"
-echo "Master URL is $ {env.JENKINS_URL}"
+stage('Input') {
+steps {
+// Get the user input
+def userInput = input(
+id: 'userInput',
+message: 'Enter a valid email address:',
+parameters: [
+string(
+defaultValue: '',
+description: 'Email address',
+name: 'email'
+)
+]
+)
+// Save the input to a variable
+email = userInput.email
+// Validate the input using a regular expression
+if (email =~ '^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+\$') {
+echo "Valid email: $ {email}"
+} else {
+error "Invalid email: $ {email}"
 }
 }
-stage('Stage 2') {
-node('Node1') { // run on slave
-echo "Running on $ {env.NODE_NAME}"
-echo "Slave URL is $ {env.JENKINS_URL}/computer/$ {env.NODE_NAME}/"
 }
 }
-}
-}
+
