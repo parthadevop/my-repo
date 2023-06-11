@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('stage1') {
+            steps {
+                // step 1
+            }
+        }
+        stage('stage2') {
+            steps {
+                script {
+                    try {
+                        // step 2
+                    } catch (Exception e) {
+                        echo "Caught exception: ${e.getMessage()}"
+                    }
+                }
+            }
+        }
+    }
+}
