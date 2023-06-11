@@ -1,5 +1,11 @@
-node('linux') { // Use a node with the label 'linux'
-stage('Server Details') { // Define a stage called 'Server Details'
-sh 'bash server_details.sh' // Run a bash script that prints server details
-}
+pipeline{
+    agent any
+    
+    stages{
+        stage('build'){
+            steps{
+                sh 'echo Build is successful'
+            }
+        }
+    }
 }
