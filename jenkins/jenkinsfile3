@@ -1,20 +1,18 @@
 pipeline {
-    agent none
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+            label 'slave_node'
+        }
+    }
     stages {
-        stage('Add Docker node') {
-            agent {
-                docker {
-                    image 'docker'
-                    label 'docker'
-                }
-            }
+        stage ("example stage") {
             steps {
-                node ('docker-build-slave') {
-                stage ('On slave') {
-                    sh 'ls -l'
-                    sh 'uname -a'
+                script {
+                    sh 'cat /etc/os-release'
+                    sh 'curl --version'
+                    sh 'echo Successfully compiled'
                 }
-            }
             }
         }
     }
