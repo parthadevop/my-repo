@@ -1,18 +1,10 @@
 pipeline {
-    agent { label 'Node1' }
+    agent any
 
     stages {
-        stage('Echo Hostname') {
+        stage('Hello') {
             steps {
-                echo "Hostname: ${env.HOSTNAME}"
-            }
-        }
-    }
-
-    post {
-        failure {
-            node('NODE2') {
-                echo "Hostname: ${env.HOSTNAME}"
+                echo 'Hello World'
             }
         }
     }
