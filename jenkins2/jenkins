@@ -2,9 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Call Variables') {
             steps {
-                echo 'Hello World'
+                build job: 'other-job', propagate: false
+                script {
+                    def otherJob = Jenkins.instance.getItemByFullName('other-job')
+                    def otherBuild = otherJob.getLastBuild()
+                    def otherEnvVars = otherBuild.getEnvironment()
+                    echo "Variable from other job: ${otherEnvVars['VAR_NAME']}"
+                }
             }
         }
     }
