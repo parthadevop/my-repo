@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Add Docker Node') {
+            steps {
+                script {
+                    def dockerNode = Jenkins.instance.addNode(new DumbSlave("Docker", "/home/jenkins", new SSHLauncher("docker.example.com", 22, "jenkins", "password", "", "")))
+                    dockerNode.setLabelString("docker")
+                }
+            }
+        }
+    }
+}
