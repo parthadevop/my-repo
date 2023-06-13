@@ -2,19 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Stage 1') {
-            steps {
-                sh 'exit 1'
+ stage('Build') { 
+            steps { 
+                sh 'make' 
             }
         }
-        stage('Stage 2') {
-            when {
-                not {
-                    previousBuild().result == 'FAILURE'
-                }
-            }
+        stage('Test'){
             steps {
-                echo 'Hello World'
+                sh 'make check'
+                junit 'reports/**/*.xml' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'make publish'
             }
         }
     }
