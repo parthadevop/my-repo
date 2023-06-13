@@ -1,13 +1,18 @@
 pipeline {
-    agent any
+    agent { label 'Node1' }
 
     stages {
-        stage('Add Docker Node') {
+        stage('Echo Hostname') {
             steps {
-                script {
-                    def dockerNode = Jenkins.instance.addNode(new DumbSlave("Docker", "/home/jenkins", new SSHLauncher("docker.example.com", 22, "jenkins", "password", "", "")))
-                    dockerNode.setLabelString("docker")
-                }
+                echo "Hostname: ${env.HOSTNAME}"
+            }
+        }
+    }
+
+    post {
+        failure {
+            node('NODE2') {
+                echo "Hostname: ${env.HOSTNAME}"
             }
         }
     }
