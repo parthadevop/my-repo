@@ -1,24 +1,22 @@
-pipeline{
+pipeline {
     agent any
-    
-    stages{
-        stage('build'){
-            steps{
-                sh 'echo Build is successful'
+    stages {
+        stage('1') {
+            steps {
+                sh 'exit 0'
             }
         }
-        stage('test'){
-            steps{
-                sh 'echo test is successfull'
-            }
-       
-        stage('deploy'){
-            steps{
-                sh 'echo deploy is successfull'
+        stage('2') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
             }
         }
-
-
-}
-
+        stage('3') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+    }
 }
